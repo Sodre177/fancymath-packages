@@ -96,6 +96,7 @@
 
 %Function constructors
     \newcommand{\func}[3]{#1\colon#2\to #3} %Generic function definition without mapping
+    \newcommand{\mfunc}[3]{#1\colon#2\mapsto #3} %Generic function definition with only mapping
     \newcommand{\afunc}[3]{#1\colon#2&\to #3} %Generic function with alignment on arrow
     \newcommand{\vfunc}[5]{\func{#1}{#2}{#3},\quad#4\longmapsto #5} %Generic function definition with mapping
     \newcommand{\vafunc}[5]{\afunc{#1}{#2}{#3}\\#4&\longmapsto #5} %Generic function over two lines aligned on arrow
@@ -114,6 +115,16 @@
         }{%
           {#1} \,\equiv\, #2\pmod{#3}
         }
+      }
+    }
+
+    \DeclareDocumentCommand\ppp{ m g }
+    {%
+      \IfNoValueTF{#2}
+      {%
+        \frac{\partial}{\partial #1}
+      }{%
+        \frac{\partial #1}{\partial #2}
       }
     }
 
