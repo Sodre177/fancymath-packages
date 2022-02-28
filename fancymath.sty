@@ -249,12 +249,13 @@
 	\begin{list}{}{%
 		\renewcommand{\makelabel}[1]{\qcolour\textbf{##1}\\}%
 		\setlength{\leftmargin}{\qmargin}%
-		}%
+	}%
 }{%
 	\end{list}%
 }
 
 %The question and answer commands
+\makeatletter
 \newcommand{\question}[1][0]{%
 	\ifthenelse{\boolean{sepquest} \and \not \boolean{firstquest} }{\newpage}{}%
 	\setboolean{firstquest}{false}%
@@ -262,20 +263,21 @@
 		\stepcounter{question}%
 		\setcounter{lastquestion}{\value{question}}%
 		\item[Question \arabic{question}]%
-		\mbox{}\\%
 	}{%
 		\setcounter{lastquestion}{#1}%
 		\item[Question #1]%
-		\mbox{}\\%
 	}%
+  \hfill\break\@minipagetrue%
 }
+
 \newcommand{\answer}[1][0]{%
 	\vspace{\the\qagap}%
 	\ifthenelse{#1=0}{%
 		\item[Answer \arabic{lastquestion}]%
-		\mbox{}\\%
 	}{%
 		\item[Answer #1]%
-		\mbox{}\\%
 	}%
+  \hfill\break%
+  \@minipagetrue%
 }
+\makeatother
